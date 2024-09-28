@@ -34,7 +34,10 @@ namespace MarketPlace.Infrastructure.Service
         public async Task<Store> CreateStoreAsync(Store store)
         {
             using var connection = _dapperContext.CreateConnection();
-            var query = "INSERT INTO Store (Name) VALUES (@Name)";
+            var query = @"
+                INSERT INTO Store (Name, Description, Owner, Address, PhoneNumber, Email, PasswordHash, CNPJ, CreatedAt, UpdatedAt) 
+                VALUES (@Name, @Description, @Owner, @Address, @PhoneNumber, @Email, @PasswordHash, @CNPJ, @CreatedAt, @UpdatedAt);
+                SELECT CAST(SCOPE_IDENTITY() as int);";
             var id = await connection.ExecuteScalarAsync<int>(query, store);
             store.Id = id;
             return store;
@@ -43,7 +46,18 @@ namespace MarketPlace.Infrastructure.Service
         public async Task<Store> UpdateStoreAsync(Store store)
         {
             using var connection = _dapperContext.CreateConnection();
-            var query = "UPDATE Store SET Name = @Name WHERE Id = @Id";
+            var query = @"
+                UPDATE Store 
+                SET Name = @Name, 
+                    Description = @Description, 
+                    Owner = @Owner, 
+                    Address = @Address, 
+                    PhoneNumber = @PhoneNumber, 
+                    Email = @Email, 
+                    PasswordHash = @PasswordHash, 
+                    CNPJ = @CNPJ, 
+                    UpdatedAt = @UpdatedAt 
+                WHERE Id = @Id";
             var rowsAffected = await connection.ExecuteAsync(query, store);
             if (rowsAffected > 0)
             {

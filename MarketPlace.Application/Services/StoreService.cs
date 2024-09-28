@@ -2,6 +2,7 @@
 using MarketPlace.Application.Interfaces;
 using MarketPlace.Domain.Entities;
 using MarketPlace.Domain.Interfaces;
+using System.Net;
 
 
 namespace MarketPlace.Application.Services
@@ -40,14 +41,34 @@ namespace MarketPlace.Application.Services
         {
             var store = new Store
             {
-                Name = storeDto.Name
+                Name = storeDto.Name,
+                Description = storeDto.Description,
+                Owner = storeDto.Owner,
+                Address = storeDto.Address,
+                PhoneNumber = storeDto.PhoneNumber,
+                Email = storeDto.Email,
+                PasswordHash = storeDto.PasswordHash,
+                CNPJ = storeDto.CNPJ,
+                CreatedAt = storeDto.CreatedAt,
+                UpdatedAt = storeDto.UpdatedAt,
+                Products = storeDto.Products
             };
 
             var createdStore = await _storeRepository.CreateStoreAsync(store);
             return new StoreDto
             {
                 Id = createdStore.Id,
-                Name = createdStore.Name
+                Name = createdStore.Name,
+                Description = createdStore.Description,
+                Owner = createdStore.Owner,
+                Address = createdStore.Address,
+                PhoneNumber = createdStore.PhoneNumber,
+                Email = createdStore.Email,
+                PasswordHash = createdStore.PasswordHash,
+                CNPJ = createdStore.CNPJ,
+                CreatedAt = createdStore.CreatedAt,
+                UpdatedAt = createdStore.UpdatedAt,
+                Products = createdStore.Products
             };
         }
 
@@ -56,7 +77,17 @@ namespace MarketPlace.Application.Services
             var store = new Store
             {
                 Id = storeDto.Id,
-                Name = storeDto.Name
+                Name = storeDto.Name,
+                Description = storeDto.Description,
+                Owner = storeDto.Owner,
+                Address = storeDto.Address,
+                PhoneNumber = storeDto.PhoneNumber,
+                Email = storeDto.Email,
+                PasswordHash = storeDto.PasswordHash,
+                CNPJ = storeDto.CNPJ,
+                CreatedAt = storeDto.CreatedAt,
+                UpdatedAt = storeDto.UpdatedAt,
+                Products = storeDto.Products
             };
 
             var updatedStore = await _storeRepository.UpdateStoreAsync(store);
@@ -65,7 +96,17 @@ namespace MarketPlace.Application.Services
             return new StoreDto
             {
                 Id = updatedStore.Id,
-                Name = updatedStore.Name
+                Name = updatedStore.Name,
+                Description = updatedStore.Description,
+                Owner = updatedStore.Owner,
+                Address = updatedStore.Address,
+                PhoneNumber = updatedStore.PhoneNumber,
+                Email = updatedStore.Email,
+                PasswordHash = updatedStore.PasswordHash,
+                CNPJ = updatedStore.CNPJ,
+                CreatedAt = updatedStore.CreatedAt,
+                UpdatedAt = updatedStore.UpdatedAt,
+                Products = updatedStore.Products
             };
         }
 

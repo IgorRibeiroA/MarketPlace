@@ -2,6 +2,7 @@ using MarketPlace.Application.Interfaces;
 using MarketPlace.Application.Services;
 using MarketPlace.Domain.Interfaces;
 using MarketPlace.Infrastructure.Data;
+using MarketPlace.Infrastructure.Repositorys;
 using MarketPlace.Infrastructure.Service;
 
 
@@ -14,9 +15,10 @@ builder.Services.AddControllers();
 // Register DapperContext as a singleton
 builder.Services.AddSingleton<DapperContext>();
 
-// Registra IStoreService com StoreService
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreService, StoreService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

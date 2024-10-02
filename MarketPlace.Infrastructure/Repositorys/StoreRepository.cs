@@ -35,9 +35,9 @@ namespace MarketPlace.Infrastructure.Service
         {
             using var connection = _dapperContext.CreateConnection();
             var query = @"
-                INSERT INTO Store (Name, Description, Owner, Address, PhoneNumber, Email, PasswordHash, CNPJ, CreatedAt, UpdatedAt) 
-                VALUES (@Name, @Description, @Owner, @Address, @PhoneNumber, @Email, @PasswordHash, @CNPJ, @CreatedAt, @UpdatedAt);
-                SELECT CAST(SCOPE_IDENTITY() as int);";
+                          INSERT INTO Store (Name, Description, Owner, Address, PhoneNumber, Email, PasswordHash, CNPJ, CreatedAt, UpdatedAt) 
+                          VALUES (@Name, @Description, @Owner, @Address, @PhoneNumber, @Email, @PasswordHash, @CNPJ, @CreatedAt, @UpdatedAt);
+                          SELECT CAST(SCOPE_IDENTITY() as int);";
             var id = await connection.ExecuteScalarAsync<int>(query, store);
             store.Id = id;
             return store;

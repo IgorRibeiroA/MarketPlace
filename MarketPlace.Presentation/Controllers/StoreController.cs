@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MarketPlace.Domain.Interfaces;
 using MarketPlace.Application.DTOs;
 using MarketPlace.Application.Interfaces;
-
 
 namespace MarketPlace.API.Controllers
 {
@@ -29,9 +27,8 @@ namespace MarketPlace.API.Controllers
         {
             var store = await _storeService.GetStoreByIdAsync(id);
             if (store == null)
-            {
                 return NotFound();
-            }
+            
             return Ok(store);
         }
 
@@ -64,9 +61,7 @@ namespace MarketPlace.API.Controllers
         {
             var deleted = await _storeService.DeleteStoreAsync(id);
             if (!deleted)
-            {
                 return NotFound();
-            }
 
             return NoContent();
         }

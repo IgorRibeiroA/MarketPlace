@@ -5,7 +5,8 @@ using MarketPlace.Infrastructure.Data;
 using MarketPlace.Infrastructure.Repositorys;
 using MarketPlace.Infrastructure.Service;
 
-
+//Comentario de gabriel
+//commit teste
 
 var builder = WebApplication.CreateBuilder(args);
 
